@@ -2,6 +2,9 @@
 
 API for user authentication with public and private profile functionality.
 
+### Note
+Please use the authentication token as x-auth-token in the header
+
 ## Endpoints
 
 ### Register a New User
@@ -12,9 +15,9 @@ Registers a new user.
 curl --location 'https://voosh-yuib.onrender.com/api/users/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name": "Your Name",
-    "email": "your_email@example.com",
-    "password": "your_password"
+    "name": "Name",
+    "email": "email@gmail.com",
+    "password": "password"
 }'
 
 
@@ -25,8 +28,8 @@ Logs in a user with the provided email and password, returning a JWT token for a
 curl --location 'https://voosh-yuib.onrender.com/api/users/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "email": "your_email@example.com",
-    "password": "your_password"
+    "email": "email@gmail.com",
+    "password": "password"
 }'
 
 
