@@ -1,0 +1,231 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Enhanced Authentication API",
+      "version": "1.0.0",
+      "description": "API for user authentication with public and private profile functionality."
+    },
+    "paths": {
+      "/api/users/register": {
+        "post": {
+          "summary": "Register a new user",
+          "tags": ["User"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "email": { "type": "string" },
+                    "password": { "type": "string" }
+                  },
+                  "required": ["name", "email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User registered successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "token": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/users/login": {
+        "post": {
+          "summary": "Login a user",
+          "tags": ["User"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": { "type": "string" },
+                    "password": { "type": "string" }
+                  },
+                  "required": ["email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User logged in successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "token": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/users/profile": {
+        "get": {
+          "summary": "Get user profile",
+          "tags": ["User"],
+          "security": [{ "bearerAuth": [] }],
+          "responses": {
+            "200": {
+              "description": "User profile retrieved successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "name": { "type": "string" },
+                      "email": { "type": "string" },
+                      "photo": { "type": "string" },
+                      "bio": { "type": "string" },
+                      "phone": { "type": "string" },
+                      "isPublic": { "type": "boolean" },
+                      "role": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put": {
+          "summary": "Update user profile",
+          "tags": ["User"],
+          "security": [{ "bearerAuth": [] }],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "photo": { "type": "string" },
+                    "bio": { "type": "string" },
+                    "phone": { "type": "string" },
+                    "email": { "type": "string" },
+                    "isPublic": { "type": "boolean" },
+                    "password": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User profile updated successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "name": { "type": "string" },
+                      "email": { "type": "string" },
+                      "photo": { "type": "string" },
+                      "bio": { "type": "string" },
+                      "phone": { "type": "string" },
+                      "isPublic": { "type": "boolean" },
+                      "role": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/users/profiles": {
+        "get": {
+          "summary": "List public profiles",
+          "tags": ["User"],
+          "responses": {
+            "200": {
+              "description": "List of public profiles",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string" },
+                        "name": { "type": "string" },
+                        "email": { "type": "string" },
+                        "photo": { "type": "string" },
+                        "bio": { "type": "string" },
+                        "phone": { "type": "string" },
+                        "isPublic": { "type": "boolean" },
+                        "role": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/users/admin/profiles": {
+        "get": {
+          "summary": "List all profiles (admin only)",
+          "tags": ["Admin"],
+          "security": [{ "bearerAuth": [] }],
+          "responses": {
+            "200": {
+              "description": "List of all profiles",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": { "type": "string" },
+                        "name": { "type": "string" },
+                        "email": { "type": "string" },
+                        "photo": { "type": "string" },
+                        "bio": { "type": "string" },
+                        "phone": { "type": "string" },
+                        "isPublic": { "type": "boolean" },
+                        "role": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
+  
