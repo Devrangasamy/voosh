@@ -9,7 +9,7 @@ API for user authentication with public and private profile functionality.
 Registers a new user.
 
 
-curl --location 'http://localhost:3000/api/users/register' \
+curl --location 'https://voosh-yuib.onrender.com/api/users/register' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "Your Name",
@@ -22,7 +22,7 @@ curl --location 'http://localhost:3000/api/users/register' \
 Logs in a user with the provided email and password, returning a JWT token for authentication.
 
 
-curl --location 'http://localhost:3000/api/users/login' \
+curl --location 'https://voosh-yuib.onrender.com/api/users/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "email": "your_email@example.com",
@@ -34,7 +34,7 @@ curl --location 'http://localhost:3000/api/users/login' \
 Retrieves the profile of the authenticated user.
 
 
-curl --location 'http://localhost:3000/api/users/profile' \
+curl --location 'https://voosh-yuib.onrender.com/api/users/profile' \
 --header 'Content-Type: application/json' \
 --header 'x-auth-token: YOUR_AUTH_TOKEN_HERE'
 
@@ -43,7 +43,7 @@ curl --location 'http://localhost:3000/api/users/profile' \
 Updates the profile of the authenticated user.
 
 
-curl --location 'http://localhost:3000/api/users/profile' \
+curl --location 'https://voosh-yuib.onrender.com/api/users/profile' \
 --header 'Content-Type: application/json' \
 --header 'x-auth-token: YOUR_AUTH_TOKEN_HERE' \
 --data-raw '{
@@ -60,7 +60,7 @@ curl --location 'http://localhost:3000/api/users/profile' \
 Retrieves a list of public profiles.
 
 
-curl --location 'http://localhost:3000/api/users/profiles' \
+curl --location 'https://voosh-yuib.onrender.com/api/users/profiles' \
 --header 'Content-Type: application/json' \
 --header 'x-auth-token: YOUR_AUTH_TOKEN_HERE'
 
@@ -69,6 +69,6 @@ Retrieves a list of all profiles, accessible only to admin users.
 
 
 
-curl --location 'http://localhost:3000/api/users/admin/profiles' \
+curl --location 'https://voosh-yuib.onrender.com/api/users/admin/profiles' \
 --header 'Content-Type: application/json' \
 --header 'x-auth-token: YOUR_AUTH_TOKEN_HERE'
